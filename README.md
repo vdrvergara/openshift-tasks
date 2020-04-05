@@ -1,12 +1,20 @@
-# openshift-tasks
+# Openshift-tasks
 Describe openshift Tasks in Jenkin for OCP 4.3
 
 == Tasks Demo Application
 
-This is an example JEE application to be used in the OpenShift 4 Advanced Application Deployment Homework Assignment. Read these instructions carefully to successfully complete the homework assignment.
+This is an example JEE application to be used in the OpenShift 4 Advanced Application Deployment.
 
-You are expected to clone this repository into your own private repository at https://homework-gitea.apps.shared.na.openshift.opentlc.com.
+== Prepare your environment
 
-Your Homework assignment will be graded by executing the pipeline at https://github.com/redhat-gpte-devopsautomation/ocp4_app_deploy_homework_grading.
+=== Create projects 
+$ bin/setup_projects.sh demo <user> true
+  
+=== Setup Jenkin
+$ bin/setup_jenkins.sh demo <git_repository> <ocp4 console url>
+  
+=== Configure development project
+$ bin/setup_dev.sh demo
+
 
 Make sure to read the README in the `openshift-tasks` folder for details on how to configure the tasks application.
