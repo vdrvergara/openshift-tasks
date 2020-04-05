@@ -7,19 +7,19 @@ This is an example JEE application to be used in the OpenShift 4 Advanced Applic
 
   * Prepare your environment
 
-    * Create projects  
+1. Create projects  
 ~~~    
   $ bin/setup_projects.sh demo <user> true
 ~~~
 
 
-    * Setup Jenkin
+2. Setup Jenkin
     
 ~~~
   $ bin/setup_jenkins.sh demo <git_repository> <ocp4 console url>
 ~~~
 
-    * Configure development project
+3. Configure development project
     
 ~~~    
   $ bin/setup_dev.sh demo
