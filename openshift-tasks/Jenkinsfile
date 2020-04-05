@@ -3,7 +3,7 @@
 // Implement the sections marked with "TBD:"
 
 // Set your project Prefix using your GUID
-def GUID = "8b62"
+def GUID = "demo"
 
 pipeline {
   agent {
