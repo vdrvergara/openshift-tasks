@@ -1,19 +1,19 @@
 # Openshift-tasks
 Describe openshift Tasks in Jenkin for OCP 4.3
 
-== Tasks Demo Application
+* Tasks Demo Application
 
 This is an example JEE application to be used in the OpenShift 4 Advanced Application Deployment.
 
-== Prepare your environment
+** Prepare your environment
 
-=== Create projects 
+*** Create projects 
 $ bin/setup_projects.sh demo <user> true
   
-=== Setup Jenkin
+*** Setup Jenkin
 $ bin/setup_jenkins.sh demo <git_repository> <ocp4 console url>
   
-=== Configure development project
+*** Configure development project
 $ bin/setup_dev.sh demo
 
 
