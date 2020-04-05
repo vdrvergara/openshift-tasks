@@ -4,7 +4,7 @@
     <mirror>
       <id>Nexus</id>
       <name>Nexus Public Mirror</name>
-      <url>https://repository.jboss.org/nexus/content/repositories/public/</url>
+      <url>https://maven.repository.redhat.com/ga</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
