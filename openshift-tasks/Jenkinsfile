@@ -1,7 +1,3 @@
-// This is a Declarative Jenkinsfile to be used in the homework
-// It should map very well to what you learned in class.
-// Implement the sections marked with "TBD:"
-
 // Set your project Prefix using your GUID
 def GUID = "demo"
 
@@ -13,7 +9,7 @@ pipeline {
       inheritFrom "maven"
       containerTemplate {
         name "jnlp"
-        image "image-registry.openshift-image-registry.svc:5000/${GUID}-jenkins/jenkins-agent-appdev:latest"
+        image "image-registry.openshift-image-registry.svc:5000/demo-jenkins/jenkins-agent-appdev:latest"
         resourceRequestMemory "2Gi"
         resourceLimitMemory "2Gi"
         resourceRequestCpu "2"
@@ -29,9 +25,9 @@ pipeline {
     mvnCmd = "source /usr/local/bin/scl_enable && mvn -s ./nexus_settings.xml"
 
     // Images and Projects
-    imageName   = "${GUID}-tasks"
-    devProject  = "${GUID}-tasks-dev"
-    prodProject = "${GUID}-tasks-prod"
+    imageName   = "demo-tasks"
+    devProject  = "demo-tasks-dev"
+    prodProject = "demo-tasks-prod"
 
     // Tags
     devTag      = "0.0-0"
@@ -58,7 +54,7 @@ pipeline {
             prodTag = "${version}"
 
             // Patch Source artifactId to include GUID
-            sh "sed -i 's/GUID/${GUID}/g' ./pom.xml"
+            sh "sed -i 's/GUID/demo/g' ./pom.xml"
           }
         }
       }
@@ -90,12 +86,12 @@ pipeline {
       steps {
         dir('openshift-tasks') {
           script {
-            //      Your project name should be "${GUID}-${JOB_BASE_NAME}-${devTag}"
+            //      Your project name should be "demo-${JOB_BASE_NAME}-${devTag}"
             //      Your project version should be ${devTag}
             echo "Running Code Analysis"
             sh "${mvnCmd} sonar:sonar \
                           -Dsonar.host.url=http://homework-sonarqube.apps.shared.na.openshift.opentlc.com/ \
-                          -Dsonar.projectName=${GUID}-${JOB_BASE_NAME}-${devTag} \
+                          -Dsonar.projectName=demo-${JOB_BASE_NAME}-${devTag} \
                           -Dsonar.projectVersion=${devTag}"
 
           }
@@ -203,7 +199,7 @@ pipeline {
 
               // Update the Image on the Production Deployment Config
               def dc = openshift.selector("dc/${destApp}").object()
-              dc.spec.template.spec.containers[0].image="image-registry.openshift-image-registry.svc:5000/${devProject}/${GUID}-tasks:${prodTag}"
+              dc.spec.template.spec.containers[0].image="image-registry.openshift-image-registry.svc:5000/${devProject}/demo-tasks:${prodTag}"
 
               // Deploy of application
               openshift.apply(dc)
