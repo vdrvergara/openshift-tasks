@@ -4,7 +4,7 @@
     <mirror>
       <id>Nexus</id>
       <name>Nexus Public Mirror</name>
-      <url>http://homework-nexus.gpte-hw-cicd.svc.cluster.local:8081/repository/maven-all-public/</url>
+      <url>http://repository.jboss.org/nexus/content/groups/public/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
