@@ -125,12 +125,14 @@
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
+      <version>1.5.0.Final</version>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.protocol</groupId>
       <artifactId>arquillian-protocol-servlet</artifactId>
       <scope>test</scope>
+      <version>1.5.0.Final</version>
     </dependency>
 
     <dependency>
