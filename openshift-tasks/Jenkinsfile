@@ -6,7 +6,7 @@ pipeline {
       inheritFrom "maven"
       containerTemplate {
         name "jnlp"
-        image "image-registry.openshift-image-registry.svc:5000/demo-jenkins/jenkins-agent-appdev:latest"
+        image "image-registry.openshift-image-registry.svc:5000/mprj-demo-jenkins/jenkins-agent-appdev:latest"
         resourceRequestMemory "2Gi"
         resourceLimitMemory "2Gi"
         resourceRequestCpu "2"
@@ -23,8 +23,8 @@ pipeline {
 
     // Images and Projects
     imageName   = "demo-tasks"
-    devProject  = "demo-tasks-dev"
-    prodProject = "demo-tasks-prod"
+    devProject  = "mprj-demo-dev"
+    prodProject = "mprj-demo-prod"
 
     // Tags
     devTag      = "0.0-0"
@@ -51,7 +51,7 @@ pipeline {
             prodTag = "${version}"
 
             // Patch Source artifactId to include GUID
-            sh "sed -i 's/GUID/demo/g' ./pom.xml"
+            sh "sed -i 's/GUID/mprj-demo/g' ./pom.xml"
           }
         }
       }
@@ -229,9 +229,6 @@ pipeline {
 
         echo "Switching Production application to ${destApp}."
         script {
-          // TBD: Execute switch
-          //      Hint: sleep 5 seconds after the switch
-          //            for the route to be fully switched over
           openshift.withCluster() {
             openshift.withProject("${prodProject}") {
               def route = openshift.selector("route/tasks").object()
